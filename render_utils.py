@@ -13,6 +13,7 @@ from smartypants import smartypants
 
 import app_config
 import copytext
+import re
 
 class BetterJSONEncoder(json.JSONEncoder):
     """
@@ -228,4 +229,29 @@ def smarty_filter(s):
     except:
         print 'This string failed to encode: %s' % s
         return Markup(s)
+
+def split_semicolon_filter(s):
+    if s is not None:
+        return s.strip().split(';')
+    return None
+
+def semicolon_to_comma_filter(s):
+    if s is not None:
+        return s.replace(';',', ')
+    return None
+
+def two_line_address_filter(s):
+    if s is not None:
+        address = re.sub(r'(.+), (.+), (MO|IL) (\d+)', r'\1</p><p>\2, \3 \4', s)
+        return address
+    return None
+
+def domain_only_filter(s):
+    if s is not None:
+        url = re.sub(r'^((?:\S+?)\.(?:com|co|net|org))(.*)', r'\1', s)
+        return url
+    return None
+
+
+
 

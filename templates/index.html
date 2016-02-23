@@ -1,56 +1,93 @@
 {% extends '_base.html' %}
 
 {% block header_content %}
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{ COPY.content.project_name|smarty }}</h1>
-                <h2>{{ COPY.content.lorem_ipsum|smarty }}</h2>
-            </div>
-        </div>
-    </div>
-</header>
-{% endblock %}
+{% endblock header_content %}
 
 
 {% block content %}
-<h1>{{ COPY.content.project_name }}</h1>
+        <section id="hero" class="hero">
+        </section>
 
-<div id="story-meta">
-    <p class="byline">by <span>{{ COPY.content.byline }}</span></p>
-    <p class="dateblock">
-        <span class="date">{{ COPY.content.pubdate }}</span>
-        <span class="time"> {{ COPY.content.pubtime }}</span>
-    </p>
-</div>
+        <div id="heroText">
+            {{COPY.content.intro}}
+        </div>
 
-<a class="comment-button comment-button-bubble comment-drawer-toggle" href="javascript:">
-    <span class="comment-count"></span>
-</a>
+        <section id="top25" class="section group">
+        {% for row in COPY.restaurants %}
+            {# The following logic sets the right ID for any ad to be inserted #}
+            {% if loop.index == 5  %}
+                {% set leaderboard = '01' %}
+            {% elif loop.index == 12  %}
+                {% set leaderboard = '02' %}
+            {% elif loop.index == 19  %}
+                {% set leaderboard = '03' %}
+            {% else %}
+                {% set leaderboard = '' %}
+            {% endif %}
 
-<a class="comment-button comment-button-article comment-drawer-toggle" data-toggle="modal" data-backdrop="static" data-target="#share-modal">
-    <span class="comment-count"></span>
-    <span class="comment-label">Share / Discuss</span>
-</a>
 
-<h2 class="knockout-example">Example COPY list</h2>
-<dl>
-    {% for row in COPY.example_list %}
-    <dt>{{ row.term }}</dt><dd>{{ row.definition }}</dd>
-    {% endfor %}
-</dl>
+            {% if loop.index <= 25 %}
+            <a href="restaurants/{{row.slug}}/" target="_parent">
+                <div class="col wide">
+                    <img src="{{ COPY.content.project_url }}/img/lq-ip.jpg" data-srcset="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/large1.jpg 1100w, {{ COPY.content.project_url }}/restaurants/{{row.slug}}/medium1.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{row.slug}}/small1.jpg 414w" />
+                    <div class="badge">
+                        <sup>#</sup>{{loop.index}}
+                    </div>
+                    <div class="name-background"></div>
+                    <h2>{{row.name}}</h2>
+                </div>
+            </a>
+            {% endif %}
+            {% if loop.index == 5 or loop.index == 12 or loop.index == 19  %}
 
-<h2 class="knockout-example">JST example</h2>
-<p id="template-example"></p>
-{% endblock %}
+            <div id="gfp-ad-leaderboardtop_slot_{{leaderboard}}" class="home-advert">
+                <script>LEE.vendor.ad_display('leaderboardtop_slot_{{leaderboard}}',[728,90],'leaderboardtop_slot,atf',LEE.vendor.ad_mappings);</script>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </section>
+
+        <section id="bottom75" class="section group">
+
+            <h2>The Rest of the Best</h2>
+            <i>in alphabetical order</i>
+
+        {# Rows of three. This requires special looping #}
+        {% for row in COPY.restaurants %}
+            {# The following logic sets the right ID for any ad to be inserted #}
+            {% if loop.index == 43  %}
+                {% set leaderboard = '04' %}
+            {% elif loop.index == 61  %}
+                {% set leaderboard = '05' %}
+            {% elif loop.index ==  79 %}
+                {% set leaderboard = '06' %}
+            {% else %}
+                {% set leaderboard = '' %}
+            {% endif %}
+
+            {% if loop.index > 25 %}
+            <a href="restaurants/{{row.slug}}/" target="_parent">
+                <div class="col grid">
+                    <img src="{{ COPY.content.project_url }}/img/lq-ip.jpg" data-srcset="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/medium1.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{row.slug}}/small1.jpg 414w" />
+                    <h3>{{row.name}}</h3>
+                </div>
+            </a>
+            {% endif %}
+            {% if loop.index == 43 or loop.index == 61 or loop.index == 79  %}
+            <div id="gfp-ad-leaderboardtop_slot_{{leaderboard}}" class="home-advert">
+                <script>LEE.vendor.ad_display('leaderboardtop_slot_{{leaderboard}}',[728,90],'leaderboardtop_slot,atf',LEE.vendor.ad_mappings);</script>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </section>
+
+        <section id="footnote" class="section">
+            {{ COPY.content.footnote }}
+        </section>
+
+{% endblock content %}
 
 
 {% block wide_content %}
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="knockout-example">{{ COPY.content.footer_title }}</h2>
-        <p>{{ COPY.content.lorem_ipsum }}</p>
-    </div>
-</div>
-{% endblock %}
+{% endblock wide_content %}
+

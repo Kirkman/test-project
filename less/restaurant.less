@@ -1,0 +1,217 @@
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+/* Restaurant blocks --------------------------------------------------------------------- */
+.col {
+  display: block;
+  float: left;
+  margin: 1% 0 1% 1.6%;
+}
+.col:first-child {
+  margin-left: 0;
+}
+/*  Grid of one  */
+.left {
+  width: 66.13%;
+}
+/*  Grid of three  */
+.right {
+  width: 32.26%;
+  background: #F5F5F5;
+}
+.badge {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: #C62828;
+  color: #fff;
+  font-family: 'Alfa Slab One', Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-size: 55px;
+  text-align: center;
+  left: 0;
+  top: 0;
+  padding: 29px 12px 0 0;
+  letter-spacing: 0.05em;
+  margin: 25px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+.badge sup {
+  font-size: .4em;
+  top: -20px;
+}
+.section img {
+  width: 100%;
+}
+.section h2 {
+  color: #0277BD;
+  position: relative;
+  font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
+  font-size: 75px;
+  line-height: 1em;
+  margin: 0 0 25px;
+  /*-webkit-text-shadow: 0 3px 7.5px rgba(0, 0, 0, 0.39);
+    -moz-text-shadow: 0 3px 7.5px rgba(0, 0, 0, 0.39);
+    -o-text-shadow: 0 3px 7.5px rgba(0, 0, 0, 0.39);
+    text-shadow: 0 3px 7.5px rgba(0, 0, 0, 0.39);*/
+}
+.section p {
+  color: #48484A;
+  font-size: 21px;
+  line-height: 1.7em;
+}
+.section .left ul {
+  margin: 40px 0 15px;
+}
+/* Button */
+.section .col .button {
+  display: block;
+  float: left;
+  position: relative;
+  width: 49.2%;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 2px;
+  font-size: 18px;
+  background-color: #C62828;
+  color: #fff;
+  font-family: 'ralewaysemibold_italic', Helvetica, Arial, sans-serif;
+  margin: 0 0 40px 1.6%;
+  text-transform: uppercase;
+}
+.section .col .button > paper-ripple {
+  border-radius: 2px;
+  overflow: hidden;
+}
+.section .col .button.raised {
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+.section .col .button.raised:active {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  transition-delay: 0s;
+}
+.section .col .button:first-of-type {
+  margin-left: 0;
+}
+.section .col .button:hover {
+  cursor: pointer;
+}
+.section .col .button .center {
+  text-align: center;
+}
+.section iframe {
+  margin: 25px 0;
+}
+.section ul li {
+  font-family: 'ralewaysemibold', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  display: inline-block;
+  color: #8C8E90;
+}
+.section .left ul li:not(:last-child):after {
+  content: "|";
+  padding: 0 10px;
+  color: #48484A;
+}
+.section ul li a {
+  color: #8C8E90;
+  -webkit-transition: 0.2s all ease-out;
+  -moz-transition: 0.2s all ease-out;
+  transition: 0.2s all ease-out;
+}
+.section ul li a:hover {
+  color: #C62828;
+}
+/*  Responsive */
+@media only screen and (max-width: 1050px) {
+  /*#top25 .col h2 {
+        font-size: 50px;
+        padding: 15px;
+    }
+    #bottom75 .col:nth-of-type(3n+1) {
+        margin: 2.5px 0 1% 1.6%;
+    }
+
+    #bottom75 .col:nth-of-type(2n+1) {
+        margin-left: 0;
+    }
+
+    #bottom75 .grid {
+        width: 49.2%;
+    }*/
+}
+@media only screen and (max-width: 414px) {
+  /*#top25 .col h2 {
+        position: relative;
+        color: #000;
+        padding: 0;
+        font-size: 35px;
+        margin-top: -5px;
+    }
+
+    #bottom75 .col h3 {
+        position: relative;
+        color: #000;
+        padding: 0;
+        font-size: 20px;
+        margin-top: -5px;
+    }
+
+    #bottom75 .col:nth-of-type(3n+1) {
+        margin: 0;
+    }
+
+    #bottom75 .col:nth-of-type(2n+1) {
+        margin: 15px 0 30px 0%;
+    }
+
+    #top25 .col,
+    #bottom75 .col { 
+        margin: 15px 0 30px 0%;
+    }
+
+    #bottom75 .grid {
+        width: 100%;
+    }
+
+    .section {
+        width: 95%;
+        margin: 0 auto;
+    }*/
+}
+/* Avertisements ------------------------------------------------------------------------- */
+.rest-advert {
+  width: 300px;
+  height: 250px;
+  background: #E0E0E0;
+  margin: 12.5px auto;
+  display: block;
+  clear: both;
+}
+@media (max-width: 767px) {
+  /*.advert {
+        width: 320px;
+        height: 50px;
+    }
+
+    .bottom {
+        margin: 10px auto 10px;
+    }*/
+}

@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% block error_meta %}
+	<meta http-equiv="Refresh" content="5;url={{ COPY.content.project_url }}" />
+{% endblock error_meta %}
+
+
+{% block content %}
+        <section id="error">
+			<img id="bird" src="http://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/live/global/resources/images/404-bird-2014.png?_dc=1399932769" />
+        	<h3>Whatever you were looking for isn't here. Sorry about that.</h3>
+        	<p>In a few seconds, we'll take you to <a href="{{ COPY.content.project_url }}">Ian Froeb's STL 100</a>, the top 100 restaurants in St. Louis.</p> 
+	    </section>
+{% endblock content %}
+
+

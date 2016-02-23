@@ -1,0 +1,328 @@
+{% extends '_base.html' %}
+
+{# Determine how many advertising photos there are #}
+{% if restaurant.advertising %}
+    {% set numPhotos = restaurant.photos|int + 1 %}
+{% else %}
+    {% set numPhotos = 0 %}
+{% endif %}
+
+
+
+{% block restaurant_title %}{{restaurant.name}} | {% endblock restaurant_title %}
+
+
+{% block restaurant_scripts %}
+    <script src="//cdn.jsdelivr.net/prefixfree/1.0.7/prefixfree.dynamic-dom.min.js"></script>
+    <script src="//cdn.jsdelivr.net/lazysizes/0.7.1/lazysizes.min.js"></script>
+
+    {% if restaurant.advertising and numPhotos > 1 %}
+    <script src="{{ COPY.content.project_url }}/js/lightGallery.min.js"></script>
+    <script src="{{ COPY.content.project_url }}/js/lightSlider.min.js"></script>
+    {% endif %}
+
+    {% if restaurant.latlng is not none %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script type="text/javascript">
+    var script = '<script type="text/javascript" src="http://google-maps-' +
+        'utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble';
+    if (document.location.search.indexOf('compiled') !== -1) {
+        script += '-compiled';
+    }
+    script += '.js"><' + '/script>';
+    document.write(script);
+    </script>
+
+    <script>
+        function initialize() {
+            var infowindow = new InfoBubble({
+                shadowStyle: 0,
+                padding: 0,
+                backgroundColor: '#fff',
+                borderColor: '#fff',
+                borderWidth: 1,
+                arrowSize: 10,
+                minWidth: 200,
+                maxWidth: 300,
+                minHeight: 95,
+                maxHeight: 140,
+                borderRadius: 0,
+                disableAutoPan: true,
+                hideCloseButton: false,
+                arrowPosition: 50,
+                backgroundClassName: 'transparent',
+                arrowStyle: 0
+            });
+            var bounds = new google.maps.LatLngBounds();
+            var map, infoBubble, marker;
+            var markers = new Array();
+            var locations = [
+                            {# The following logic is necessary to handle restaurants with multiple locations #}
+                            {# split_semicolon takes semicolon-delimited text and turns it into a Python list#}
+                            {% set latlngs = restaurant.latlng|split_semicolon %}
+                            {% set addresses = restaurant.address|split_semicolon %}
+                            {% set phones = restaurant.phone|split_semicolon %}
+                            {% set numlatlng = latlngs|count %}
+                            {# Iterate over latlng pairs #}
+                            {# It is imperative that the items in the latlngs, addresses, and phones column be in identical order! #}
+                            {% for latlng in latlngs %}
+                                {% set address = addresses[loop.index-1] %}
+                                {% set phone = phones[loop.index-1] %}
+                                {# If this is the last item, omit the trailing comma #}
+                                {% if loop.index == numlatlng %}
+                                    ["<div class='mylabel'><h1>{{ restaurant.name }}</h1><p>{{address|two_line_address|safe}}</p><p>{{phone}}</p></div>", {{latlng}}]
+                                {# Otherwise, include the trailing comma #}
+                                {% else %}
+                                    ["<div class='mylabel'><h1>{{ restaurant.name }}</h1><p>{{address|two_line_address|safe}}</p><p>{{phone}}</p></div>", {{latlng}}],
+                                {% endif %}
+                            {% endfor %}
+            ];
+            var myLatlng = new google.maps.LatLng(locations[0][1],locations[0][2]);
+            var mapOptions = {
+                zoom: 16,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                streetViewControl: false,
+                draggable: false,
+                panControl: false,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_BOTTOM
+                }
+            }
+            map = new google.maps.Map(document.getElementById('map-container'), mapOptions);
+
+            for (var i = 0; i < locations.length; i++) {
+                var markerLatLng = new google.maps.LatLng(locations[i][1], locations[i][2]);
+                marker = new google.maps.Marker({
+                    position: markerLatLng,
+                    map: map,
+                    icon: '{{ COPY.content.project_url }}/img/marker.png'
+                });
+
+                bounds.extend(marker.position);
+
+                markers.push(marker);
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                        map.setCenter(marker.position);
+                    }
+                })(marker, i));
+            }
+
+            if (locations.length > 1) {
+                map.fitBounds(bounds);
+            }
+
+        }
+
+
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    {% endif %}
+
+{% endblock restaurant_scripts %}
+
+
+{% block restaurant_css %}
+    {{ CSS.empty() }}
+    {#
+    {{ CSS.push('less/restaurant.less') }}
+    #}
+    {{ CSS.push('less/lightSlider.less') }}
+    {{ CSS.push('less/lightGallery.less') }}
+    {{ CSS.render('css/restaurant.min.css') }}
+{% endblock restaurant_css %}
+
+{% block header_content %}
+{% endblock header_content %}
+
+
+{% block content %}
+
+        {# ONLY FOR ADVERTISING PACKAGES #}
+        {# Create a gallery if this is an advertising package #}
+
+        {% if restaurant.advertising and numPhotos > 1 %}
+        <section class="section group gallery">
+            <ul id="imageGallery">
+                {# Add the exact number of photos to the gallery #}
+                {# range() is zero-based, so shift everything by 1 #}
+                {% for n in range(1, numPhotos) %}
+                <li data-thumb="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/small{{n}}.jpg" data-src="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg">
+                    <img alt="" data-sizes="auto" src="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg" sizes="(min-width: 1100px) 1100px, 100%" data-srcset="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg 1000w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/medium{{n}}.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/small{{n}}.jpg 320w" class="lazyload" />
+                </li>
+                {% endfor %}
+            </ul>
+            <p class="img-caption">{{restaurant.photo_alt}}</p>
+
+            {# Only the top 25 restaurants get a numbered badge #}
+            {% if restaurant.index <= 25 %}
+            <div class="badge">
+                <sup>#</sup>{{ restaurant.index }}
+            </div>
+            {% endif %}
+        </section>
+
+        {# Otherwise, just a single photo #}
+        {% else %}
+        <section class="section group">
+            <div class="col wide">
+                <img alt="" data-sizes="auto" src="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large1.jpg" sizes="(min-width: 1100px) 1100px, 100%" data-srcset="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large1.jpg 1000w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/medium1.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/small1.jpg 320w" class="lazyload" />
+                <p class="img-caption">{{restaurant.photo_alt}}</p>
+                {# Only the top 25 restaurants get a numbered badge #}
+                {% if restaurant.index <= 25 %}
+                <div class="badge">
+                    <sup>#</sup>{{ restaurant.index }}
+                </div>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+
+
+
+       <section class="section group">
+            <div class="col left">
+                <h2>{{ restaurant.name }}</h2>
+                <ul class="contact">
+                    {% if restaurant.web %}
+                    <li><a href="http://{{ restaurant.web }}" target="_blank">{{ restaurant.web|domain_only }}</a></li>
+                    {% endif %}
+                    {% if restaurant.address|split_semicolon|length > 1 %}
+                    <li><a href="#map-container">Multiple locations</a></li>
+                    {% else %} 
+                    <li><a href="tel:{{ restaurant.phone }}">{{ restaurant.phone }}</a></li>
+                    <li><a href="#map-container">{{restaurant.address}}</a></li>
+                    {% endif %}
+                </ul>
+
+                {# ONLY FOR ADVERTISING PACKAGES #}
+                {% if restaurant.advertising and restaurant.menu %}
+                <a class="button raised" href="{{restaurant.menu}}" target="_blank">
+                    <div class="center" fit>View menu</div>
+                </a>
+                {% endif %}
+                {% if restaurant.advertising and restaurant.reservation %}
+                <a class="button raised" href="{{restaurant.reservation}}" target="_blank">
+                    <div class="center" fit>Make a reservation</div>
+                </a>
+                {% endif %}
+
+                <ul class="cost-cuisine">
+                    <li class="cost">
+                        <i class="fa fa-usd"></i><a href="{{ COPY.content.project_url }}/search.html">{{ restaurant.pricing }}</a>
+                    </li>
+                    <li class="cuisine">
+                        <i class="fa fa-cutlery"></i><a href="{{ COPY.content.project_url }}/search.html">{{ restaurant.cuisine|semicolon_comma }}</a>
+                    </li>
+                </ul>
+                <p class="review">{{ restaurant.review }}</p>
+
+                {% if restaurant.latlng is not none %}
+                <div id="map-container">
+                </div>
+                {% endif %}
+
+                <div id="gfp-ad-leaderboardtop_slot" class="home-advert">
+                    <script>LEE.vendor.ad_display('leaderboardtop_slot',[728,90],'atf',LEE.vendor.ad_mappings);</script>
+                </div>
+            </div>
+            <div class="col right">
+                {# ONLY FOR ADVERTISING PACKAGES #}
+                <h4 class="advert-label">Advertisement</h4>
+                {% if restaurant.advertising %}
+                <div class="rest-social">
+                    <h5>Connect</h5>
+                    {% if restaurant.facebook %}
+                    <a href="{{restaurant.facebook}}" target="_blank">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    {% endif %}
+                    {% if restaurant.twitter %}
+                    <a href="{{restaurant.twitter}}" target="_blank">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    {% endif %}
+                    {% if restaurant.instagram %}
+                    <a href="{{restaurant.instagram}}" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    {% endif %}
+                    {% if restaurant.foursquare %}
+                    <a href="{{restaurant.foursquare}}" target="_blank">
+                        <i class="fa fa-foursquare"></i>
+                    </a>
+                    {% endif %}
+                    {% if restaurant.pinterest %}
+                    <a href="{{restaurant.pinterest}}" target="_blank">
+                        <i class="fa fa-pinterest"></i>
+                    </a>
+                    {% endif %}
+                </div>
+                    {% if restaurant.chef %}
+                    <div class="chef-profile">
+                        <h5>From the owners</h5>
+                        <p class="profile">{{restaurant.chef|safe}}</p>
+                    </div>
+                    {% endif %}
+                {% endif %}
+                {# Display ads #}
+                <div id="gfp-ad-bigad_slot" class="rest-advert">
+                    <script>LEE.vendor.ad_display('bigad_slot',[300,250],'atf');</script>
+                </div>
+                <div id="gfp-ad-bigad_slot_middle" class="rest-advert">
+                    <script>LEE.vendor.ad_display('bigad_slot_middle',[300,250],'stf');</script>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrap">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+                <path id="arrow-left-1" d="M46.077 55.738c0.858 0.867 0.858 2.266 0 3.133s-2.243 0.867-3.101 0l-25.056-25.302c-0.858-0.867-0.858-2.269 0-3.133l25.056-25.306c0.858-0.867 2.243-0.867 3.101 0s0.858 2.266 0 3.133l-22.848 23.738 22.848 23.738z" />
+            </svg>
+            <svg width="64" height="64" viewBox="0 0 64 64">
+                <path id="arrow-right-1" d="M17.919 55.738c-0.858 0.867-0.858 2.266 0 3.133s2.243 0.867 3.101 0l25.056-25.302c0.858-0.867 0.858-2.269 0-3.133l-25.056-25.306c-0.858-0.867-2.243-0.867-3.101 0s-0.858 2.266 0 3.133l22.848 23.738-22.848 23.738z" />
+            </svg>
+        </div>
+
+        <nav class="nav-slide">
+            {% if restaurant.prev_name is not none %}
+            <a class="prev" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.prev_slug }}/">
+                <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left-1"></svg></span>
+                <div>
+                    <h3>Previous <span>{{ restaurant.prev_name }}</span></h3>
+                    <img src="../{{ restaurant.prev_slug }}/thumb.jpg" alt="Previous thumb" />
+                </div>
+            </a>
+            {% endif %}
+            {% if restaurant.next_name is not none %}
+            <a class="next" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.next_slug }}/">
+                <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right-1"></svg></span>
+                <div>
+                    <h3>Next <span>{{ restaurant.next_name }}</span></h3>
+                    <img src="../{{ restaurant.next_slug }}/thumb.jpg" alt="Next thumb" />
+                </div>
+            </a>
+            {% endif %}
+        </nav>
+
+
+
+
+<p>{{ restaurant.description }}</p>
+{% endblock content %}
+
+
+<div id="gfp-ad-leaderboardtop_slot" class="home-advert">
+    <script>LEE.vendor.ad_display('leaderboardtop_slot',[728,90],'atf',LEE.vendor.ad_mappings);</script>
+</div>
+
+{% block wide_content %}
+{% endblock wide_content %}
+
+

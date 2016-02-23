@@ -1,0 +1,10 @@
+# formula to change restaurant name into a slug
+=LOWER(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(A2,"'", ""),"\W","-"),"-+","-"))
+
+
+# formula to change cuisine into a classname suitable for isotope
+=LOWER(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(F2,"'", ""),"[^\w;]","-"),"-+","-"),";"," "))
+
+# formula to change pricing into a classname suitable for isotope
+=CONCATENATE("p",LOWER(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(G2,"\$", ""),"and",""),"to","-"),"\s","-"),"-+","-"))) 
+
