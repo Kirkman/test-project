@@ -59,10 +59,14 @@
             <a class="email" href="mailto:?subject=Ian Froeb's STL 100&body={{COPY.share.share_url}}">
                 <i class="fa fa-envelope"></i>
             </a>
+            {#<a class="mobile-search" href="{{ COPY.content.project_url }}/search.html" target="_parent">#}
+            <a class="mobile-search" href="search.html" target="_parent">
+               <i class="fa fa-search"></i>
+            </a>
         </div>
         {#<a href="{{ COPY.content.project_url }}/search.html" target="_parent">#}
         <a href="search.html" target="_parent">
-            <div class="search"><i class="fa fa-search"></i> Custom search</div>
+            <div class="search"><i class="fa fa-search"></i><span> Custom search</span></div>
         </a>
     </div>
 

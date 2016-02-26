@@ -66,6 +66,14 @@
             <div class="filters">
 
                 <div class="ui-group desktop">
+                    <h3>Location</h3>
+                    <div class="button-group js-radio-button-group" data-filter-group="location">
+                        <button class="button is-checked" data-filter="">All</button>
+                        <button class="button" data-filter=".nearme">Near me</button>
+                    </div> <!--.button-group-->
+                </div> <!--.ui-group-->
+
+                <div class="ui-group desktop">
                     <h3>Price</h3>
                     <div class="button-group js-radio-button-group" data-filter-group="price">
                         <button class="button is-checked" data-filter="">All</button>
@@ -124,6 +132,15 @@
                         <button class="button" data-filter=".vegetarian">Vegetarian</button>
                         <button class="button" data-filter=".vietnamese">Vietnamese</button>
                     </div> <!--.button-group-->
+                </div> <!--.ui-group-->
+
+
+                <div class="ui-group mobile location">
+                    <select class="option-set clearfix" data-filter-group="location">
+                        <option value="*" data-filter="" class="disabled-select">Location</option>
+                        <option value="*" data-filter="">All</option>
+                        <option data-filter=".nearme">Near me</option>
+                    </select>
                 </div> <!--.ui-group-->
 
                 <div class="ui-group mobile price">
@@ -192,7 +209,7 @@
 
             <div class="isotope">
                 {% for row in COPY.restaurants %}
-                <div class="col grid {{row.cuisineclass}} {{row.priceclass}}">
+                <div class="col grid {{row.cuisineclass}} {{row.priceclass}}" data-latlngs="{{row.latlng}}">
                     <a href="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/" target="_parent">
                         <img alt="{{row.photo_alt}}" data-sizes="auto" src="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/small1.jpg" />
                         <h3>{{row.name}}</h3>

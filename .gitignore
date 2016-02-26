@@ -52,3 +52,5 @@ data/copy.xlsx
 www/assets/*
 !www/assets/assetsignore
 www/live-data/*
+www/img/*.psd
+

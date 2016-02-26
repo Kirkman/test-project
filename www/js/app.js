@@ -1,5 +1,64 @@
 $(document).ready(function($) {
 
+
+    // Find the nearest marker to a location. Stores the marker's id in var 'closest'.
+    // From stackoverflow.  http://stackoverflow.com/a/4060721/566307
+    // Returns an array of all the distances
+    function rad(x) {return x*Math.PI/180;}
+    function updateDistances( location ) {
+        var lat = location.coords.latitude;
+        var lng = location.coords.longitude;
+        var accuracy = location.coords.accuracy;
+
+        var R = 6371;
+
+        $('.grid').each( function( index ) {
+            var $this = $(this);
+            $this.removeClass('nearme');
+            var latlngs = $this.attr('data-latlngs');
+            // Only run this code on restaurants that have latlngs. This excludes food trucks and popups.
+            if ( latlngs ) {
+                // We store latlngs as semi-colon delimited lists of lat,lng pairs. This allows us to store multiple locations for a restaurant
+                latlngs = latlngs.split(';');
+                var distances = [];
+                // Iterate over each lat,lng pair and calculate its distance from the browser's reported position.
+                for (var j=0; j< latlngs.length; j++) {
+                    var latlng = latlngs[j].split(',');
+                    var rlat = latlng[0];
+                    var rlng = latlng[1];
+                    var dLat  = rad(rlat - lat);
+                    var dLong = rad(rlng - lng);
+                    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong/2) * Math.sin(dLong/2);
+                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                    var d = R * c;
+                    // need to convert d from kilometers to miles
+                    d = d * 0.621371;
+                    // Add this particular distance to the restaurant's array of distances
+                    distances.push(d);
+                }
+                // Sort the array of distances from smallest to biggest.
+                distances.sort().reverse();
+                // Take the closest distance and add that to the restaurant's Isotope data.
+                // FOR FUTURE: Make the list sortable by distance
+                $this.attr('data-distance',distances[0]);
+                // If the closest distance is within 4 miles, tag this as "nearme" so Isotope will show it when we filter.
+                if ( distances[0] < 4 ) {
+                    $this.addClass('nearme');
+                }
+            }
+        });
+
+        // combine filters
+        var filterValue = '';
+        for ( var prop in filters ) {
+            filterValue += filters[ prop ];
+        }
+        // set filter for Isotope
+        $container.isotope({ filter: filterValue });
+    }
+
+
     // Only run this code on pages that actually have an imageGallery
     if ( $('#imageGallery').length ) {
 
@@ -36,8 +95,18 @@ $(document).ready(function($) {
             // get group key
             var $buttonGroup = $this.parents('.button-group');
             var filterGroup = $buttonGroup.attr('data-filter-group');
+            var dataFilter = $this.attr('data-filter');
+
+            // Need to do some geolocating if they click "Near me"
+            if ( dataFilter == '.nearme' ) {
+                if (navigator.geolocation) {
+                    var userLocation = navigator.geolocation.getCurrentPosition( updateDistances );
+                }
+            }
+
             // set filter for group
-            filters[ filterGroup ] = $this.attr('data-filter');
+            filters[ filterGroup ] = dataFilter;
+
             // combine filters
             var filterValue = '';
             for ( var prop in filters ) {
@@ -56,8 +125,16 @@ $(document).ready(function($) {
             // store filter value in object
             // i.e. filters.color = 'red'
             var filterGroup = $this.attr('data-filter-group');
+            var dataFilter = $this.find(':selected').attr('data-filter');
 
-            filters[filterGroup] = $this.find(':selected').attr('data-filter');
+            // Need to do some geolocating if they click "Near me"
+            if ( dataFilter == '.nearme' ) {
+                if (navigator.geolocation) {
+                    var userLocation = navigator.geolocation.getCurrentPosition( updateDistances );
+                }
+            }
+
+            filters[filterGroup] = dataFilter;
 
             // convert object into array
             var filterValue = [];

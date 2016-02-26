@@ -46,10 +46,10 @@ for array in addressArraysToGeocode:
 				data = json.loads(jsonData)
 				if data['status'] == "OK":
 					if len(data['results']) == 1:
+						new_address = data['results'][0]['formatted_address'].replace(', USA','')
 						lat = data['results'][0]['geometry']['location']['lat']
 						lng = data['results'][0]['geometry']['location']['lng']
-
-					output = output + str(lat) + ',' + str(lng) + ';'
+					output = output + str(new_address) + '\t ' + str(lat) + ',' + str(lng) + ';'
 				else:
 					print 'error' + str(data);
 		# Remove tailing semicolon

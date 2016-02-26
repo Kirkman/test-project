@@ -292,7 +292,8 @@
 
         <nav class="nav-slide">
             {% if restaurant.prev_name is not none %}
-            <a class="prev" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.prev_slug }}/">
+            {#<a class="prev" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.prev_slug }}/">#}
+            <a class="prev" href="../../restaurants/{{ restaurant.prev_slug }}/">
                 <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left-1"></svg></span>
                 <div>
                     <h3>Previous <span>{{ restaurant.prev_name }}</span></h3>
@@ -301,7 +302,8 @@
             </a>
             {% endif %}
             {% if restaurant.next_name is not none %}
-            <a class="next" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.next_slug }}/">
+            {#<a class="next" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.next_slug }}/">#}
+            <a class="next" href="../../restaurants/{{ restaurant.next_slug }}/">
                 <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right-1"></svg></span>
                 <div>
                     <h3>Next <span>{{ restaurant.next_name }}</span></h3>

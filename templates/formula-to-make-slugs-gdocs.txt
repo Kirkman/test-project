@@ -8,3 +8,7 @@
 # formula to change pricing into a classname suitable for isotope
 =CONCATENATE("p",LOWER(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(G2,"\$", ""),"and",""),"to","-"),"\s","-"),"-+","-"))) 
 
+
+
+=LOWER(REGEXREPLACE(REGEXREPLACE(REGEXREPLACE(A2,"'", ""),"[^0-9A-Za-z_]","-"),"-+","-"))
+
