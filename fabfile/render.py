@@ -141,3 +141,67 @@ def render_all():
         with open(filename, 'w') as f:
             f.write(content)
 
+    render_restaurants(compiled_includes)
+
+    return compiled_includes
+
+
+
+
+@task
+def render_restaurants(compiled_includes):
+    """
+    Render the detail pages.
+    """
+    from flask import g, url_for
+    from render_utils import make_context
+    import re
+
+    context = make_context()
+
+    #local('rm -rf /restaurant')
+
+    restaurants = list(context['COPY']['restaurants'])
+
+    compiled_includes = compiled_includes or {}
+
+    for restaurant in restaurants:
+
+        restaurant = dict(zip(restaurant.__dict__['_columns'], restaurant.__dict__['_row']))
+
+        slug = restaurant.get('slug')
+
+        with app.app.test_request_context():
+
+            path = '%sindex.html' % url_for('_restaurant', slug=slug)
+            # Whatever we prepend here to the path, will affect the relative paths in the web app's HTML and CSS files.
+            # So we're going to add a restaurant subdirectory, to keep all the restaurant directories in one place away from CSS and JS directories.
+            #path = 'restaurants' + path
+            # NO NEED TO PREPEND. I fixed the .app/py task to include /restaurants/
+
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
+
+            g.compile_includes = True
+            g.compiled_includes = compiled_includes
+
+            view = app.__dict__['_restaurant']
+            content = view(slug).data
+
+            # compiled_includes = g.compiled_includes
+
+        # Adding './www' here ensures that the files will be written into the proper directory on the LOCAL machine.
+        # This part does NOT affect relative paths in the web app itself.
+        path = './www/%s' % path
+
+        # Ensure path exists
+        head = os.path.split(path)[0]
+
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
+            f.write(content)
+

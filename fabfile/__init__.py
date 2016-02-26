@@ -212,7 +212,8 @@ def deploy(remote='origin'):
             servers.deploy_confs()
 
     update()
-    render.render_all()
+    compiled_includes = render.render_all()
+    render.render_restaurants(compiled_includes)
 
     # # Clear files that should never be deployed
     # local('rm -rf www/live-data')
