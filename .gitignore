@@ -53,4 +53,6 @@ www/assets/*
 !www/assets/assetsignore
 www/live-data/*
 www/img/*.psd
-
+www/img/*
+*.[jJ][pP][gG]
+www/restaurants/*
