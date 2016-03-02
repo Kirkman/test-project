@@ -223,6 +223,19 @@
                 </ul>
                 <p class="review">{{ restaurant.review }}</p>
 
+                {% if restaurant.last_ranking %}
+                <p class="review"><strong>Last year's ranking:</strong> {{ restaurant.last_ranking }}</p>
+                {% endif %}
+
+                {% if restaurant.opened %}
+                <p class="review"><strong>Opened:</strong> {{ restaurant.opened }}</p>
+                {% endif %}
+
+                {% if restaurant.must_order %}
+                <p class="review"><strong>Must order:</strong> {{ restaurant.must_order }}</p>
+                {% endif %}
+
+
                 {% if restaurant.latlng is not none %}
                 <div id="map-container">
                 </div>

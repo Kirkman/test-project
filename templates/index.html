@@ -12,6 +12,12 @@
             {{COPY.content.intro}}
         </div>
 
+        {% if COPY.content.promo %}
+        <div id="promo">
+            {{ COPY.content.promo }}
+        </div>
+        {% endif %}
+
         <section id="top25" class="section group">
         {% for row in COPY.restaurants %}
             {# The following logic sets the right ID for any ad to be inserted #}
