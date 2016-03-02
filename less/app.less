@@ -1052,6 +1052,10 @@ body {
                     strong {
                         font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
                     }
+                    // No max-width needed before this breakpoint since there's no add at the right.
+                    @media (max-width: 1275px) {
+                        max-width: none;
+                    }
                 }
             }
             .right {
@@ -1061,17 +1065,14 @@ body {
                 margin: 0;
                 @media (max-width: 1275px) {
                     width: 100%;
-                    width: 100%;
                     padding: 20px 75px 0;
                     display: block;
                     border-left: none;
+                    text-align: center;
                 }
                 @media (max-width: 414px) {
                     padding: 5px;
                 }
-                // @media (max-width: 320px) {
-                //     width: 100%
-                // }
                 h4 {
                     color: #E0E0E0;
                     text-transform: uppercase;
@@ -1157,6 +1158,11 @@ body {
                 margin: 25px 0;
                 display: block;
                 height: 450px;
+                // No max-width needed before this breakpoint since there's no add at the right.
+                @media (max-width: 1275px) {
+                    max-width: none;
+                }
+
             }
             img[src="http://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif"] {
                 content: url("http://staging.graphics.stltoday.com/restaurants/img/close.png");
