@@ -1,4 +1,4 @@
-Ian Froeb's STL 100 (2016)
+Ian Froeb's STL 100 (2015)
 ========================
 
 * [What is this?](#what-is-this)
