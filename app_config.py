@@ -32,7 +32,7 @@ REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME
 
 # Project name used for assets rig
 # Should stay the same, even if PROJECT_SLUG changes
-ASSETS_SLUG = 'stl100-2016'
+ASSETS_SLUG = 'stl100-2015'
 
 """
 DEPLOYMENT
