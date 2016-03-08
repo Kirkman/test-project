@@ -1,27 +1,11 @@
-// @darkred: #b71c1c;
-// @red: #c62828;
-// @blue: #0277bd;
-// @black: #000000;
-// @white: #ffffff;
-// @darkblue: #01579b;
-// @darkgrey: #48484a;
-// @mediumgrey: #8c8e90;
-// @cyan: #0277bd;
-
-
-@darkred: #991111;
-@red: #aa1515;
+@darkred: #b71c1c;
+@red: #c62828;
 @blue: #0277bd;
-@black: #11112a;
-@white: #efefef;
+@black: #000000;
+@white: #ffffff;
 @darkblue: #01579b;
 @darkgrey: #48484a;
 @mediumgrey: #8c8e90;
-@grey: #aaa;
-@lightgrey: #cfcfcf;
-
-
-
 * {
     box-sizing: border-box;
 }
@@ -53,21 +37,15 @@ body {
         cursor: pointer;
         text-decoration: none;
     }
-    .number-font {
-        font-family: 'Alfa Slab One', Helvetica, Arial, sans-serif;
-        font-size: .85em;
-        padding-right: .15em;
-    }
     .navbar {
         width: 100%;
         height: 60px;
-        background: @black;
+        background: @red;
         color: @white;
         position: fixed;
         z-index: 99999;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-        font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
-        //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
+        font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
         .title {
             height: 40px;
             width: 345px;
@@ -79,7 +57,7 @@ body {
                 width: 250px;
             }
             @media (max-width: 500px) {
-                width: 186px;
+                width: 168px;
             }
             span {
                 float: right;
@@ -92,13 +70,12 @@ body {
                 @media (max-width: 500px) {
                     line-height: 1em;
                     float: right;
-                    width: 124px;
+                    width: 106px;
                 }
                 i {
                     font-family: 'Alfa Slab One', Helvetica, Arial, sans-serif;
                     font-size: .85em;
                     letter-spacing: 0.05em;
-                    font-style: normal;
                 }
             }
             img {
@@ -119,9 +96,6 @@ body {
             left: 0;
             right: 0;
             margin: 10px auto;
-            .mobile-search {
-                display: none;
-            }
 
             @media (max-width: 780px) {
                 left: 100px;
@@ -130,12 +104,6 @@ body {
                 margin: 10px;
                 left: auto;
                 right: 0;
-                .email {
-                    display: none;
-                }
-                .mobile-search {
-                    display: inline-block;
-                }
             }
             @media (max-width: 500px) {
                 width: 102px;
@@ -217,7 +185,7 @@ body {
     #socialBar {
         .social {
             width: 100%;
-            background: @red;
+            background: @blue;
             color: @white;
             float: left;
             list-style: none;
@@ -248,7 +216,7 @@ body {
                 }
                 a {
                     display: inline-block;
-                    background: @black;
+                    background: @red;
                     color: @white;
                     border-radius: 50%;
                     text-decoration: none;
@@ -257,7 +225,7 @@ body {
                     font-size: 18px;
                     transition: .2s all ease-out;
                     &:hover {
-                        background: @black;
+                        background: @red;
                     }
                     @media (min-width: 1025px) {
                         display: block;
@@ -280,13 +248,15 @@ body {
             display: block;
             width: 100%;
             height: auto;
-            padding-top: 42%;
+            padding-top: 48%;
             box-sizing: border-box;
-            background: url('../img/hero.png') no-repeat;
+            background: url('../img/hero.jpg') no-repeat;
+            // background: url('/restaurants/img/hero.jpg?124') no-repeat;
             background-size: cover;
             background-position: center center;
             @media (max-width: 1000px) {
-                background: url('../img/hero2.png') no-repeat;
+                background: url('../img/hero2.jpg') no-repeat;
+                // background: url('/restaurants/img/hero2.jpg?124') no-repeat;
                 background-size: 70%;
                 padding-top: 85%;
                 background-position: center center;
@@ -309,8 +279,7 @@ body {
             }
             p {
                 color: @darkgrey;
-                //font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+                font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
                 font-size: 24px;
                 line-height: 1.6;
                 padding-bottom: .9em;
@@ -323,26 +292,29 @@ body {
 
                 .footnote {
                     color: @darkgrey;
-                    border-bottom: 2px solid @red;
+                    border-bottom: 2px solid @blue;
                     transition: 0.2s ease-out;
 
                     &:hover {
-                        color: @red;
+                        color: @blue;
                         cursor: pointer;
                     }
                 }
 
                 .logo-font {
-                    //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                    font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
-                    color: @red;
+                    font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
+                    color: @blue;
                 }
 
                 .number-font {
-                    color: @red;
+                    font-family: 'Alfa Slab One', Helvetica, Arial, sans-serif;
+                    font-style: italic;
+                    font-size: .85em;
+                    padding-right: .15em;
+                    color: @blue;
                 }
 
-                span.signature {
+                .signature {
                     float: right;
                     text-align: right;
                     font-family: 'Rock Salt', cursive;
@@ -352,65 +324,8 @@ body {
                     padding: 0;
                     margin: -1.5% 12.5% 0 0;
                 }
-                img.signature {
-                    float: right;
-                    width: 50%;
-                    padding: 0;
-                    margin: -1.5% 12.5% 10px 0;
-                }
-
             }
         }
-
-        #promo {
-            position: relative;
-            border: 6px solid @black;
-            //box-shadow: 1px 1px 6px rgba(50, 50, 50, 1);
-            max-width: 75%;
-            margin: 35px auto 15px auto;
-            text-align: center;
-            clear: both;
-            font-size: 30px;
-            background: rgba(184,184,184,1);
-            background: -moz-linear-gradient(top, rgba(184,184,184,1) 0%, rgba(222,222,222,1) 100%);
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(184,184,184,1)), color-stop(100%, rgba(222,222,222,1)));
-            background: -webkit-linear-gradient(top, rgba(184,184,184,1) 0%, rgba(222,222,222,1) 100%);
-            background: -o-linear-gradient(top, rgba(184,184,184,1) 0%, rgba(222,222,222,1) 100%);
-            background: -ms-linear-gradient(top, rgba(184,184,184,1) 0%, rgba(222,222,222,1) 100%);
-            background: linear-gradient(to bottom, rgba(184,184,184,1) 0%, rgba(222,222,222,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', endColorstr='#dedede', GradientType=0 );
-            transform: translateZ(0);
-
-            @media (max-width: 960px) {
-                font-size: 24px;
-            }
-            @media (max-width: 600px) {
-                font-size: 18px;
-            }
-            @media (min-width: 800px) {
-                &:hover {
-                    border: 6px solid @red;
-                    transform: scale(1.05);
-                    background: @white;
-                    transition: all 0.2s ease;
-                }
-            }
-
-            a {
-                padding: 15px;
-                display: inline-block;
-                position: relative;
-                width: 100%;
-                height: 100%;
-                color: @black;
-            }
-            strong {
-                font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
-            }
-        }
-
-
-
         /*  Sections  */
         
         .section {
@@ -425,21 +340,20 @@ body {
                 text-align: right;
                 float: right;
                 padding: 7px 0 22px;
-                font-size: 15px !important;
-                line-height: 1.5 !important;
+                font-size: 15px;
+                line-height: 1.5;
                 color: @darkgrey;
-                //font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+                font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
             }
             .badge {
                 position: absolute;
                 width: 125px;
                 height: 125px;
                 border-radius: 50%;
-                background: @black;
+                background: @red;
                 color: @white;
                 font-family: 'Alfa Slab One', Helvetica, Arial, sans-serif;
-                //font-style: italic;
+                font-style: italic;
                 font-size: 55px;
                 text-align: center;
                 left: 0;
@@ -460,8 +374,7 @@ body {
                 sup {
                     font-size: .4em;
                     top: -1.2em;
-                    //left: 5px;
-                    left: 0px;
+                    left: 5px;
                 }
             }
             img {
@@ -476,8 +389,9 @@ body {
                     padding: 0;
                 }
                 .name-background {
-                    background: linear-gradient(to top, rgba(239,239,239,0) 0%, rgba(239,239,239,.75) 50%, rgba(239,239,239,1) 100%);
-                    background: linear-gradient(to top, rgba(239,239,239,0) 0%, rgba(239,239,239,.75) 50%, rgba(239,239,239,1) 100%);
+                    // background: rgba(255,255,255,0.9);
+                    // margin-top: -100px;
+                    background: linear-gradient(to top, rgba(255,255,255,0) 0%,rgba(255,255,255,.75) 50%,rgba(255,255,255,1) 100%);
                     position: absolute;
                     top: 0;
                     padding-top: 18.5%;
@@ -488,7 +402,7 @@ body {
                     }
                 }
                 h2 {
-                    color: @red;
+                    color: @blue;
                     position: absolute;
                     // display: inline-block;
                     // top: 42px;
@@ -499,8 +413,9 @@ body {
                     text-align: left;
                     max-width: 100%;
                     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-                    //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                    font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                    // text-shadow: 1px 1px 0px rgba(255, 255, 255, 1),
+                    //             -1px -1px 0px rgba(0, 0, 0, 1);
+                    font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                     font-size: 75px;
                     line-height: 1em;
                     // margin: 10px 0 100px;
@@ -529,7 +444,7 @@ body {
                     }
                     // @media (max-width: 414px) {
                     //     position: relative;
-                    //     color: @red;
+                    //     color: @blue;
                     //     padding: 0;
                     //     font-size: 35px;
                     //     margin-top: 5px;
@@ -627,9 +542,8 @@ body {
             //     clear: both;
             // }
             h2 {
-                color: @black;
-                //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                color: @red;
+                font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                 font-size: 50px;
                 line-height: 1em;
                 text-align: center;
@@ -640,8 +554,7 @@ body {
             }
             i {
                 color: @mediumgrey;
-                //font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+                font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 line-height: 1.6;
@@ -654,25 +567,47 @@ body {
                 }
             }
             .col {
+                // display: block;
+                // float: left;
+                // margin: 2.5px 0 1% 1.6%;
+                // @media (max-width: 414px) {
+                //     margin: 15px 0 30px 0%;
+                // }
                 h3 {
-                    color: @red;
+                    color: @blue;
                     position: relative;
                     bottom: 0;
                     left: 0;
-                    //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                    font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                    font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                     font-size: 25px;
                     line-height: 1em;
                     padding: 10px 0 0;
                     @media (max-width: 414px) {
                         position: relative;
-                        color: @red;
+                        color: @blue;
                         padding: 0;
                         font-size: 20px;
                         margin-top: 5px;
                     }
                 }
             }
+            // .col:nth-of-type(3n+1) {
+            //     margin-left: 0;
+            //     @media (max-width: 1100px) {
+            //         margin: 2.5px 0 1% 1.6%;
+            //     }
+            //     @media (max-width: 414px) {
+            //         margin: 0;
+            //     }
+            // }
+            // .col:nth-of-type(2n+1) {
+            //     @media (max-width: 1100px) {
+            //         margin-left: 0;
+            //     }
+            //     @media (max-width: 414px) {
+            //         margin: 15px 0 30px 0%;
+            //     }
+            // }
             .grid {
                 width: ~"calc(33% - 10px)";
                 margin: 0 5px 40px;
@@ -703,8 +638,7 @@ body {
             }
             p,ol,ul {
                 color: @mediumgrey;
-                //font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+                font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
                 font-size: 14px;
                 line-height: 1.6;
                 padding-bottom: .9em;
@@ -725,27 +659,24 @@ body {
                 text-align: center;
             }
             h3 {
-                color: @red;
+                color: @blue;
                 margin: 1rem auto;
                 text-align: center;
                 max-width: 100%;
-                //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                 font-size: 36px;
                 line-height: 1.2;
             }
             p {
-                //font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+                font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
                 font-size: 16px;
                 line-height: 1.6;
                 text-align: center;
                 a {
-                    //font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
-                    font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+                    font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
                     font-weight: bold;
                     display: inline;
-                    color: @black;
+                    color: @red;
                     text-decoration: none;
                 }
             }
@@ -765,7 +696,7 @@ body {
 
         footer {
             font-family: 'ralewaysemibold', Helvetica, Arial, sans-serif;
-            background: @black;
+            background: @blue;
             color: @white;
             margin-top: 50px;
             clear: both;
@@ -779,8 +710,7 @@ body {
                 }
                 h6 {
                     text-transform: uppercase;
-                    //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                    font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                    font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                     font-size: 1.25em;
                     @media (min-width: 768px) {
                         max-width: 565px;
@@ -796,8 +726,7 @@ body {
                     }
                 }
                 .published {
-                    //font-family: 'ralewaysemibold_italic', Helvetica, Arial, sans-serif;
-                    font-family: 'ralewaysemibold', Helvetica, Arial, sans-serif;
+                    font-family: 'ralewaysemibold_italic', Helvetica, Arial, sans-serif;
                     font-size: .65em;
                 }
             }
@@ -872,7 +801,7 @@ body {
                         background: @white;
 
                         &:hover {
-                            background-color: @black;
+                            background-color: @red;
                             opacity: 1;
                         }
                     }
@@ -913,10 +842,9 @@ body {
                     line-height: 50px;
                     border-radius: 2px;
                     font-size: 18px;
-                    background-color: @black;
+                    background-color: @red;
                     color: @white;
-                    //font-family: 'ralewaysemibold_italic', Helvetica, Arial, sans-serif;
-                    font-family: 'ralewaysemibold', Helvetica, Arial, sans-serif;
+                    font-family: 'ralewaysemibold_italic', Helvetica, Arial, sans-serif;
                     text-transform: uppercase;
                     transition: .2s all ease-out;
                     /*clear: both;*/
@@ -984,10 +912,10 @@ body {
                         &:not(:last-child):after {
                             content: "|";
                             padding: 0 10px;
-                            color: @red;
+                            color: @blue;
                         }
                         a {
-                            color: @black;
+                            color: @mediumgrey;
                             -webkit-transition: .2s all ease-out;
                             -moz-transition: .2s all ease-out;
                             transition: .2s all ease-out;
@@ -1005,12 +933,11 @@ body {
                     //     margin: 160px 0 40px;
                     // }
                     li {
-                        //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                        font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                        font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                         font-size: 20px;
                         font-weight: 400;
                         display: inline-block;
-                        color: @red;
+                        color: @blue;
                         margin-right: 20px;
                         @media (max-width: 600px) {
                             font-size: 16px;
@@ -1020,7 +947,7 @@ body {
                             color: @white;
                             width: 40px;
                             height: 40px;
-                            background: @black;
+                            background: @red;
                             border-radius: 50%;
                             font-size: 23px;
                             text-align: center;
@@ -1035,13 +962,13 @@ body {
                             }
                         }
                         a:link {
-                            color: @mediumgrey;
+                            color: #0277bd;
                         }
                         a:visited {
-                            color: @mediumgrey;
+                            color: #0277bd;
                         }
                         a:hover {
-                            color: @mediumgrey;
+                            color: #0277bd;
                             text-decoration: underline;
                         }
                     }
@@ -1049,13 +976,6 @@ body {
                 .review {
                     max-width: 728px;
                     clear: both;
-                    strong {
-                        font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
-                    }
-                    // No max-width needed before this breakpoint since there's no add at the right.
-                    @media (max-width: 1275px) {
-                        max-width: none;
-                    }
                 }
             }
             .right {
@@ -1065,14 +985,17 @@ body {
                 margin: 0;
                 @media (max-width: 1275px) {
                     width: 100%;
+                    width: 100%;
                     padding: 20px 75px 0;
                     display: block;
                     border-left: none;
-                    text-align: center;
                 }
                 @media (max-width: 414px) {
                     padding: 5px;
                 }
+                // @media (max-width: 320px) {
+                //     width: 100%
+                // }
                 h4 {
                     color: #E0E0E0;
                     text-transform: uppercase;
@@ -1098,7 +1021,7 @@ body {
                     a {
                         cursor: pointer;
                         i {
-                            color: @red;
+                            color: @blue;
                             font-size: 25px;
                             padding: 7px;
                             transition: .2s all ease-out;
@@ -1127,8 +1050,7 @@ body {
                         font-size: 14px;
                         line-height: 1.5;
                         color: @mediumgrey;
-                        //font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
-                        font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+                        font-family: 'ralewaymedium_italic', Helvetica, Arial, sans-serif;
                     }
                 }
                 .rest-advert {
@@ -1158,11 +1080,6 @@ body {
                 margin: 25px 0;
                 display: block;
                 height: 450px;
-                // No max-width needed before this breakpoint since there's no add at the right.
-                @media (max-width: 1275px) {
-                    max-width: none;
-                }
-
             }
             img[src="http://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif"] {
                 content: url("http://staging.graphics.stltoday.com/restaurants/img/close.png");
@@ -1229,7 +1146,7 @@ nav a {
     z-index: 99998;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    color: @red;
+    color: @blue;
     cursor: pointer;
 }
 nav a.prev {
@@ -1249,7 +1166,7 @@ nav a svg {
     z-index: 99997;
     display: block;
     padding: 10px;
-    background-color: @black;
+    background-color: @red;
     color: @white;
     transition: .2s all ease-out;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -1288,13 +1205,12 @@ nav a svg {
     position: relative;
     margin: 0;
     padding: 25px 0;
-    color: @red;
+    color: @blue;
     white-space: nowrap;
     font-weight: 300;
     font-size: 1.3em;
     line-height: 1.5;
-    //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-    font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+    font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
 }
 .nav-slide div h3 span {
     display: block;
@@ -1327,6 +1243,87 @@ nav a svg {
 
 
 
+// body .container #isotope_items {
+//   max-width: 920px;
+//   margin-top: 50px;
+// }
+// @media (max-width: 1100px) {
+//   body .container #isotope_items {
+//     padding: 0 20px;
+//   }
+// }
+// @media (max-width: 414px) {
+//   body .container #isotope_items {
+//     padding: 0;
+//   }
+// }
+// body .container #isotope_items .col {
+//   display: block;
+//   float: left;
+//   margin: 2.5px 0 1% 1.6%;
+// }
+// @media (max-width: 414px) {
+//   body .container #isotope_items .col {
+//     margin: 15px 0 30px 0%;
+//   }
+// }
+// body .container #isotope_items .col h3 {
+//   color: #0277bd;
+//   position: relative;
+//   bottom: 0;
+//   left: 0;
+//   font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
+//   font-size: 25px;
+//   line-height: 1em;
+//   margin: 10px 0 25px;
+// }
+// @media (max-width: 414px) {
+//   body .container #isotope_items .col h3 {
+//     position: relative;
+//     color: #0277bd;
+//     padding: 0;
+//     font-size: 20px;
+//     margin-top: 5px;
+//   }
+// }
+// body .container #isotope_items .col:nth-of-type(3n+1) {
+//   margin-left: 0;
+// }
+// @media (max-width: 1100px) {
+//   body .container #isotope_items .col:nth-of-type(3n+1) {
+//     margin: 2.5px 0 1% 1.6%;
+//   }
+// }
+// @media (max-width: 414px) {
+//   body .container #isotope_items .col:nth-of-type(3n+1) {
+//     margin: 0;
+//   }
+// }
+// @media (max-width: 1100px) {
+//   body .container #isotope_items .col:nth-of-type(2n+1) {
+//     margin-left: 0;
+//   }
+// }
+// @media (max-width: 414px) {
+//   body .container #isotope_items .col:nth-of-type(2n+1) {
+//     margin: 15px 0 30px 0%;
+//   }
+// }
+// body .container #isotope_items .grid {
+//   width: 32.26%;
+// }
+// @media (max-width: 1100px) {
+//   body .container #isotope_items .grid {
+//     width: 49.2%;
+//   }
+// }
+// @media (max-width: 414px) {
+//   body .container #isotope_items .grid {
+//     width: 100%;
+//   }
+// }
+
+
 #search {
     max-width: 1100px;
     margin: -30px auto 0;
@@ -1345,16 +1342,14 @@ nav a svg {
         }
 
         .ui-group {
-            margin-bottom: 20px;
             
-            &:last-child {
-                margin-bottom: 0px;
+            &:first-child {
+                margin-bottom: 20px;
             }
 
             h3 {
-                color: @red;
-                //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                color: @blue;
+                font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                 font-size: 18px;
             }
 
@@ -1365,25 +1360,20 @@ nav a svg {
                 color: @darkgrey;
                 font: normal 18px 'ralewaymedium', sans-serif;
                 font-size: 13px;
-                line-height: 13px;
                 outline: none;
-                padding: 4px;
+                padding: 2px 0;
 
                 &:hover {
-                    color: @black;
+                    color: @red;
                     cursor: pointer;
-                    background-color: @grey;
-                    border-radius: 4px;
                 }
+
                 &:active {
-                    color: @black;
+                    color: @red;
                 }
             }
             .is-checked {
-                color: @black;
-                font-weight: 900;
-                background-color: @lightgrey;
-                border-radius: 4px;
+                color: @red;
             }
 
             .button-group {
@@ -1426,9 +1416,8 @@ nav a svg {
             select {
                 width: 100%;
                 border-radius: none;
-                color: @red;
-                //font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaybold', Helvetica, Arial, sans-serif;
+                color: @blue;
+                font-family: 'ralewaybold_italic', Helvetica, Arial, sans-serif;
                 font-size: 18px;
                 font-weight: 200;
                 max-width: 100%;
@@ -1461,16 +1450,15 @@ nav a svg {
                 border-top: 5px solid rgba(0,0,0,0.14);
                 pointer-events: none;
             }
+        } 
+
+        .price {
+            margin-right: 5px;
+
             @media (max-width:414px) {
                 margin: 0 auto 10px;
             }
-
-        } 
-
-        &:nth-child(1n+1) {
-            margin-right: 5px;
         }
-
     }
 
     .isotope {
@@ -1661,13 +1649,12 @@ nav a svg {
             h3 {
                 font-size: 15px;
                 line-height: 1.2;
-                color: @red;
-                //font-family: 'ralewaysemibold_italic', Helvetica, Arial, sans-serif;
-                font-family: 'ralewaysemibold', Helvetica, Arial, sans-serif;
+                color: @blue;
+                font-family: 'ralewaysemibold_italic', Helvetica, Arial, sans-serif;
                 padding: 0;
                 @media (max-width: 414px) {
                     position: relative;
-                    color: @red;
+                    color: @blue;
                     padding: 0;
                     font-size: 20px;
                     margin-top: 5px;
@@ -1686,6 +1673,27 @@ nav a svg {
 
 /* Fonts --------------------------------------------------------------------------------- */
 
+// @font-face {
+//     font-family: 'ralewayextrabold_italic';
+//     src: url('../fonts/raleway-extrabolditalic-webfont.eot');
+//     src: url('../fonts/raleway-extrabolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-extrabolditalic-webfont.woff2') format('woff2'), url('../fonts/raleway-extrabolditalic-webfont.woff') format('woff'), url('../fonts/raleway-extrabolditalic-webfont.ttf') format('truetype'), url('../fonts/raleway-extrabolditalic-webfont.svg#ralewaybold_italic') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'ralewayextralight';
+//     src: url('../fonts/raleway-extralight-webfont.eot');
+//     src: url('../fonts/raleway-extralight-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-extralight-webfont.woff2') format('woff2'), url('../fonts/raleway-extralight-webfont.woff') format('woff'), url('../fonts/raleway-extralight-webfont.ttf') format('truetype'), url('../fonts/raleway-extralight-webfont.svg#ralewayextralight') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'ralewayextrabold';
+//     src: url('../fonts/raleway-extrabold-webfont.eot');
+//     src: url('../fonts/raleway-extrabold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-extrabold-webfont.woff2') format('woff2'), url('../fonts/raleway-extrabold-webfont.woff') format('woff'), url('../fonts/raleway-extrabold-webfont.ttf') format('truetype'), url('../fonts/raleway-extrabold-webfont.svg#ralewayextrabold') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 @font-face {
     font-family: 'ralewaybold_italic';
     src: url('../fonts/raleway-bolditalic-webfont.eot');
@@ -1700,6 +1708,13 @@ nav a svg {
     font-weight: normal;
     font-style: normal;
 }
+// @font-face {
+//     font-family: 'ralewayblack';
+//     src: url('../fonts/raleway-black-webfont.eot');
+//     src: url('../fonts/raleway-black-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-black-webfont.woff2') format('woff2'), url('../fonts/raleway-black-webfont.woff') format('woff'), url('../fonts/raleway-black-webfont.ttf') format('truetype'), url('../fonts/raleway-black-webfont.svg#ralewayblack') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 @font-face {
     font-family: 'ralewaybold_italic';
     src: url('../fonts/raleway-blackitalic-webfont.eot');
@@ -1707,13 +1722,27 @@ nav a svg {
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-    font-family: 'ralewaybold';
-    src: url('../fonts/raleway-black-webfont.eot');
-    src: url('../fonts/raleway-black-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-black-webfont.woff2') format('woff2'), url('../fonts/raleway-black-webfont.woff') format('woff'), url('../fonts/raleway-black-webfont.ttf') format('truetype'), url('../fonts/raleway-black-webfont.svg#ralewaybold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: 'ralewaylight';
+//     src: url('../fonts/raleway-light-webfont.eot');
+//     src: url('../fonts/raleway-light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-light-webfont.woff2') format('woff2'), url('../fonts/raleway-light-webfont.woff') format('woff'), url('../fonts/raleway-light-webfont.ttf') format('truetype'), url('../fonts/raleway-light-webfont.svg#ralewaylight') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'ralewayitalic';
+//     src: url('../fonts/raleway-italic-webfont.eot');
+//     src: url('../fonts/raleway-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-italic-webfont.woff2') format('woff2'), url('../fonts/raleway-italic-webfont.woff') format('woff'), url('../fonts/raleway-italic-webfont.ttf') format('truetype'), url('../fonts/raleway-italic-webfont.svg#ralewayitalic') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'ralewayextralight_italic';
+//     src: url('../fonts/raleway-extralightitalic-webfont.eot');
+//     src: url('../fonts/raleway-extralightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-extralightitalic-webfont.woff2') format('woff2'), url('../fonts/raleway-extralightitalic-webfont.woff') format('woff'), url('../fonts/raleway-extralightitalic-webfont.ttf') format('truetype'), url('../fonts/raleway-extralightitalic-webfont.svg#ralewayextralight_italic') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 @font-face {
     font-family: 'ralewaymedium_italic';
     src: url('../fonts/raleway-mediumitalic-webfont.eot');
@@ -1728,6 +1757,20 @@ nav a svg {
     font-weight: normal;
     font-style: normal;
 }
+// @font-face {
+//     font-family: 'ralewaylight_italic';
+//     src: url('../fonts/raleway-lightitalic-webfont.eot');
+//     src: url('../fonts/raleway-lightitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-lightitalic-webfont.woff2') format('woff2'), url('../fonts/raleway-lightitalic-webfont.woff') format('woff'), url('../fonts/raleway-lightitalic-webfont.ttf') format('truetype'), url('../fonts/raleway-lightitalic-webfont.svg#ralewaylight_italic') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'ralewaythin';
+//     src: url('../fonts/raleway-thin-webfont.eot');
+//     src: url('../fonts/raleway-thin-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-thin-webfont.woff2') format('woff2'), url('../fonts/raleway-thin-webfont.woff') format('woff'), url('../fonts/raleway-thin-webfont.ttf') format('truetype'), url('../fonts/raleway-thin-webfont.svg#ralewaythin') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 @font-face {
     font-family: 'ralewaysemibold_italic';
     src: url('../fonts/raleway-semibolditalic-webfont.eot');
@@ -1742,3 +1785,17 @@ nav a svg {
     font-weight: normal;
     font-style: normal;
 }
+// @font-face {
+//     font-family: 'ralewayregular';
+//     src: url('../fonts/raleway-regular-webfont.eot');
+//     src: url('../fonts/raleway-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-regular-webfont.woff2') format('woff2'), url('../fonts/raleway-regular-webfont.woff') format('woff'), url('../fonts/raleway-regular-webfont.ttf') format('truetype'), url('../fonts/raleway-regular-webfont.svg#ralewayregular') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'ralewaythin_italic';
+//     src: url('../fonts/raleway-thinitalic-webfont.eot');
+//     src: url('../fonts/raleway-thinitalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/raleway-thinitalic-webfont.woff2') format('woff2'), url('../fonts/raleway-thinitalic-webfont.woff') format('woff'), url('../fonts/raleway-thinitalic-webfont.ttf') format('truetype'), url('../fonts/raleway-thinitalic-webfont.svg#ralewaythin_italic') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }

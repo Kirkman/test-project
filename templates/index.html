@@ -12,12 +12,6 @@
             {{COPY.content.intro}}
         </div>
 
-        {% if COPY.content.promo %}
-        <div id="promo">
-            {{ COPY.content.promo }}
-        </div>
-        {% endif %}
-
         <section id="top25" class="section group">
         {% for row in COPY.restaurants %}
             {# The following logic sets the right ID for any ad to be inserted #}
@@ -35,7 +29,7 @@
             {% if loop.index <= 25 %}
             <a href="restaurants/{{row.slug}}/" target="_parent">
                 <div class="col wide">
-                    <img src="{{ COPY.content.project_url }}/img/lq-ip.jpg" data-srcset="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/large1.jpg 1100w, {{ COPY.content.project_url }}/restaurants/{{row.slug}}/medium1.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{row.slug}}/small1.jpg 414w" />
+                    <img src="{{ COPY.content.cdn_url }}/img/lq-ip.jpg" data-srcset="{{ COPY.content.cdn_url }}/restaurants/{{row.slug}}/large1.jpg 1100w, {{ COPY.content.cdn_url }}/restaurants/{{row.slug}}/medium1.jpg 640w, {{ COPY.content.cdn_url }}/restaurants/{{row.slug}}/small1.jpg 414w" />
                     <div class="badge">
                         <sup>#</sup>{{loop.index}}
                     </div>

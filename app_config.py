@@ -19,13 +19,13 @@ NAMES
 """
 # Project name to be used in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'stl100-2016'
+PROJECT_SLUG = 'stl100-2015'
 
 # Project name to be used in file paths
-PROJECT_FILENAME = 'stl100_2016'
+PROJECT_FILENAME = 'stl100-2015'
 
 # The name of the repository containing the source
-REPOSITORY_NAME = 'stl100-2016'
+REPOSITORY_NAME = 'stl100-2015'
 GITHUB_USERNAME = 'PostDispatchInteractive'
 REPOSITORY_URL = 'git@github.com:%s/%s.git' % (GITHUB_USERNAME, REPOSITORY_NAME)
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
@@ -103,7 +103,7 @@ DEBUG = True
 """
 COPY EDITING
 """
-COPY_GOOGLE_DOC_KEY = '1BIK1UVC1hqMC-CCdvDVb-NOQRNuIFWL2RCbIIm1b2u8'
+COPY_GOOGLE_DOC_KEY = '0Ah9eiJcTTiAKdDFxQnA4X3B0Z09ZUGRYWHhmUmZDblE'
 COPY_PATH = 'data/copy.xlsx'
 
 """

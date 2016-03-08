@@ -223,19 +223,6 @@
                 </ul>
                 <p class="review">{{ restaurant.review }}</p>
 
-                {% if restaurant.last_ranking %}
-                <p class="review"><strong>Last year's ranking:</strong> {{ restaurant.last_ranking }}</p>
-                {% endif %}
-
-                {% if restaurant.opened %}
-                <p class="review"><strong>Opened:</strong> {{ restaurant.opened }}</p>
-                {% endif %}
-
-                {% if restaurant.must_order %}
-                <p class="review"><strong>Must order:</strong> {{ restaurant.must_order }}</p>
-                {% endif %}
-
-
                 {% if restaurant.latlng is not none %}
                 <div id="map-container">
                 </div>
@@ -305,22 +292,20 @@
 
         <nav class="nav-slide">
             {% if restaurant.prev_name is not none %}
-            {#<a class="prev" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.prev_slug }}/">#}
-            <a class="prev" href="../../restaurants/{{ restaurant.prev_slug }}/">
+            <a class="prev" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.prev_slug }}/">
                 <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left-1"></svg></span>
                 <div>
                     <h3>Previous <span>{{ restaurant.prev_name }}</span></h3>
-                    <img src="{{ COPY.content.project_url }}/restaurants/{{ restaurant.prev_slug }}/thumb1.jpg" alt="Previous thumb" />
+                    <img src="../{{ restaurant.prev_slug }}/thumb.jpg" alt="Previous thumb" />
                 </div>
             </a>
             {% endif %}
             {% if restaurant.next_name is not none %}
-            {#<a class="next" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.next_slug }}/">#}
-            <a class="next" href="../../restaurants/{{ restaurant.next_slug }}/">
+            <a class="next" href="{{ COPY.content.project_url }}/restaurants/{{ restaurant.next_slug }}/">
                 <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right-1"></svg></span>
                 <div>
                     <h3>Next <span>{{ restaurant.next_name }}</span></h3>
-                    <img src="{{ COPY.content.project_url }}/restaurants/{{ restaurant.next_slug }}/thumb1.jpg" alt="Next thumb" />
+                    <img src="../{{ restaurant.next_slug }}/thumb.jpg" alt="Next thumb" />
                 </div>
             </a>
             {% endif %}
