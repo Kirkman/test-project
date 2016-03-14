@@ -36,8 +36,8 @@
     <div class="navbar">
         <a href="{{ COPY.content.project_url }}" target="_parent">
             <div class="title">
-                <img src="{{ COPY.content.project_url }}/img/stltoday-logo.png" />
-                <span>Ian Froeb's STL <i class="num">100</i></span>
+                <img src="{{ COPY.content.cdn_url }}/img/stltoday-logo.png" />
+                <span>STL <i class="num">100</i> (2015 archive)</span>
             </div>
         </a>
         <div class="social-buttons">
@@ -192,7 +192,7 @@
                 {% for row in COPY.restaurants %}
                 <div class="col grid {{row.cuisineclass}} {{row.priceclass}}">
                     <a href="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/" target="_parent">
-                        <img alt="{{row.photo_alt}}" data-sizes="auto" src="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/small1.jpg" />
+                        <img alt="{{row.photo_alt}}" data-sizes="auto" src="{{ COPY.content.cdn_url }}/restaurants/{{row.slug}}/small1.jpg" />
                         <h3>{{row.name}}</h3>
                     </a>
                 </div>
@@ -210,7 +210,7 @@
                 <p class="published">Published March 14, 2015</p>
             </div>
             <div class="logo">
-                <a href="http://www.stltoday.com" data-action="Click Logo"><img src="{{ COPY.content.project_url }}/img/banner.png" alt="Post-Dispatch Logo">
+                <a href="http://www.stltoday.com" data-action="Click Logo"><img src="{{ COPY.content.cdn_url }}/img/banner.png" alt="Post-Dispatch Logo">
                 </a>
             </div>
             <div class="copyright">

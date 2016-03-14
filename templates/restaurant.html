@@ -17,8 +17,8 @@
     <script src="//cdn.jsdelivr.net/lazysizes/0.7.1/lazysizes.min.js"></script>
 
     {% if restaurant.advertising and numPhotos > 1 %}
-    <script src="{{ COPY.content.project_url }}/js/lightGallery.min.js"></script>
-    <script src="{{ COPY.content.project_url }}/js/lightSlider.min.js"></script>
+    <script src="{{ COPY.content.cdn_url }}/js/lightGallery.min.js"></script>
+    <script src="{{ COPY.content.cdn_url }}/js/lightSlider.min.js"></script>
     {% endif %}
 
     {% if restaurant.latlng is not none %}
@@ -97,7 +97,7 @@
                 marker = new google.maps.Marker({
                     position: markerLatLng,
                     map: map,
-                    icon: '{{ COPY.content.project_url }}/img/marker.png'
+                    icon: '{{ COPY.content.cdn_url }}/img/marker.png'
                 });
 
                 bounds.extend(marker.position);
@@ -153,8 +153,8 @@
                 {# Add the exact number of photos to the gallery #}
                 {# range() is zero-based, so shift everything by 1 #}
                 {% for n in range(1, numPhotos) %}
-                <li data-thumb="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/small{{n}}.jpg" data-src="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg">
-                    <img alt="" data-sizes="auto" src="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg" sizes="(min-width: 1100px) 1100px, 100%" data-srcset="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg 1000w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/medium{{n}}.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/small{{n}}.jpg 320w" class="lazyload" />
+                <li data-thumb="{{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/small{{n}}.jpg" data-src="{{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg">
+                    <img alt="" data-sizes="auto" src="{{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg" sizes="(min-width: 1100px) 1100px, 100%" data-srcset="{{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/large{{n}}.jpg 1000w, {{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/medium{{n}}.jpg 640w, {{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/small{{n}}.jpg 320w" class="lazyload" />
                 </li>
                 {% endfor %}
             </ul>
@@ -172,7 +172,7 @@
         {% else %}
         <section class="section group">
             <div class="col wide">
-                <img alt="" data-sizes="auto" src="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large1.jpg" sizes="(min-width: 1100px) 1100px, 100%" data-srcset="{{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/large1.jpg 1000w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/medium1.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{restaurant.slug}}/small1.jpg 320w" class="lazyload" />
+                <img alt="" data-sizes="auto" src="{{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/large1.jpg" sizes="(min-width: 1100px) 1100px, 100%" data-srcset="{{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/large1.jpg 1000w, {{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/medium1.jpg 640w, {{ COPY.content.cdn_url }}/restaurants/{{restaurant.slug}}/small1.jpg 320w" class="lazyload" />
                 <p class="img-caption">{{restaurant.photo_alt}}</p>
                 {# Only the top 25 restaurants get a numbered badge #}
                 {% if restaurant.index <= 25 %}
@@ -296,7 +296,7 @@
                 <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-left-1"></svg></span>
                 <div>
                     <h3>Previous <span>{{ restaurant.prev_name }}</span></h3>
-                    <img src="../{{ restaurant.prev_slug }}/thumb.jpg" alt="Previous thumb" />
+                    <img src="{{ COPY.content.cdn_url }}/restaurants/{{ restaurant.prev_slug }}/thumb.jpg" alt="Previous thumb" />
                 </div>
             </a>
             {% endif %}
@@ -305,7 +305,7 @@
                 <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right-1"></svg></span>
                 <div>
                     <h3>Next <span>{{ restaurant.next_name }}</span></h3>
-                    <img src="../{{ restaurant.next_slug }}/thumb.jpg" alt="Next thumb" />
+                    <img src="{{ COPY.content.cdn_url }}/restaurants/{{ restaurant.next_slug }}/thumb.jpg" alt="Next thumb" />
                 </div>
             </a>
             {% endif %}

@@ -68,7 +68,7 @@
             {% if loop.index > 25 %}
             <a href="restaurants/{{row.slug}}/" target="_parent">
                 <div class="col grid">
-                    <img src="{{ COPY.content.project_url }}/img/lq-ip.jpg" data-srcset="{{ COPY.content.project_url }}/restaurants/{{row.slug}}/medium1.jpg 640w, {{ COPY.content.project_url }}/restaurants/{{row.slug}}/small1.jpg 414w" />
+                    <img src="{{ COPY.content.cdn_url }}/img/lq-ip.jpg" data-srcset="{{ COPY.content.cdn_url }}/restaurants/{{row.slug}}/medium1.jpg 640w, {{ COPY.content.cdn_url }}/restaurants/{{row.slug}}/small1.jpg 414w" />
                     <h3>{{row.name}}</h3>
                 </div>
             </a>
